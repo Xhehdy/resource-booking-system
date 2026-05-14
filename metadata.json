@@ -1,0 +1,6 @@
+{
+  "name": "DeptBooking: Resource Management System",
+  "description": "A three-tier departmental resource booking system for managing class slots, laboratory access, and projector allocations with role-based permissions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
