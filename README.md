@@ -2,19 +2,28 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# Resource Booking System
 
-This contains everything you need to run your app locally.
+This app is a React + Express resource booking system backed by Supabase Postgres.
 
-View your app in AI Studio: https://ai.studio/apps/368c65a0-9438-4000-a421-b39232a60fc2
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
+## Setup
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+2. Copy [.env.example](.env.example) to `.env` and fill in:
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `JWT_SECRET`
+3. Create the tables in Supabase using [schema.sql](schema.sql).
+4. Run the app:
+   ```bash
+   npm run dev
+   ```
+
+## Notes
+
+- The server seeds base resources and a default admin user on startup if they do not exist.
+- The default admin credentials are `admin` / `admin123`; change them after first login.
+- The app uses the Supabase service role key on the server only. Do not expose it in client code.
