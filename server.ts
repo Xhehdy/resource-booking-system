@@ -173,12 +173,15 @@ const seedSupabaseData = async () => {
 type AppOptions = {
     enableVite?: boolean;
     serveStatic?: boolean;
+    seedData?: boolean;
 };
 
 export async function createApp(options: AppOptions = {}) {
     const app = express();
 
-    await seedSupabaseData();
+    if (options.seedData && supabase) {
+        await seedSupabaseData();
+    }
 
     app.use(cors());
     app.use(helmet({
@@ -187,7 +190,10 @@ export async function createApp(options: AppOptions = {}) {
     app.use(express.json());
 
     app.get('/api/health', (req, res) => {
-        res.json({ status: 'ok', database: 'supabase' });
+        res.json({
+            status: 'ok',
+            database: supabase ? 'supabase' : 'unconfigured',
+        });
     });
 
     app.post('/api/auth/register', async (req, res) => {
@@ -488,6 +494,7 @@ async function startServer() {
     const app = await createApp({
         enableVite: process.env.NODE_ENV !== 'production',
         serveStatic: process.env.NODE_ENV === 'production',
+        seedData: true,
     });
     const PORT = Number(process.env.PORT || 3000);
 
