@@ -2,8 +2,8 @@ import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
 import cors from 'cors';
 import helmet from 'helmet';
-import supabase from './src/db';
-import { hashPassword, comparePassword, generateToken, verifyToken } from './src/auth';
+import supabase from './src/db.js';
+import { hashPassword, comparePassword, generateToken, verifyToken } from './src/auth.js';
 
 type Role = 'admin' | 'lecturer' | 'student';
 
